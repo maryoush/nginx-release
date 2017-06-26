@@ -89,6 +89,8 @@ Browse to your VM's elastic IP to ensure that the page loads as expected.
   ssl_key: |
     -----BEGIN RSA PRIVATE KEY-----
     MIIJKQIBAAKCAgEAyv4in6scMw3OkBlr++1OooLuZQKftmwGIO8puOj6lSH4H1LI
+    ...
+    -----END RSA PRIVATE KEY-----  
   ```
 
 * `ssl_chained_cert`: *Optional*, defaults to ''. This contains the contents of the
@@ -110,6 +112,8 @@ Browse to your VM's elastic IP to ensure that the page loads as expected.
   ssl_chained_cert: |
     -----BEGIN CERTIFICATE-----
     MIIGSjCCBTKgAwIBAgIRAOxg+vyhygau6bc2SAooL6owDQYJKoZIhvcNAQELBQAw
+    ...
+    -----END CERTIFICATE-----  
   ```
 
 * `ssl_client_cert`: *Optional*, defaults to ''. This contains the contents of the
@@ -126,9 +130,11 @@ Browse to your VM's elastic IP to ensure that the page loads as expected.
   Here is the beginning from a sample configuration:
 
   ```yaml
-  ssl_key: |
+  ssl_client_cert: |
     -----BEGIN CERTIFICATE-----
     MIIDfDCCAWQCAQEwDQYJKoZIhvcNAQEFBQAwRTELMAkGA1UEBhMCQVUxEzARBgNV
+    ...
+    -----END CERTIFICATE-----  
   ```
 * `ssl_trusted_cert`: *Optional*, defaults to ''. This contains the contents of the
   SSL certificate in PEM-encoded format for the [certification authority](https://en.wikipedia.org/wiki/Certificate_authority) .
@@ -137,17 +143,20 @@ Browse to your VM's elastic IP to ensure that the page loads as expected.
   requires the following line in the `nginx_conf`'s *server* definition:
 
   ```
-   ssl_client_certificate /var/vcap/jobs/nginx/etc/ssl_trusted.crt.pem;
+   ssl_trusted_certificate /var/vcap/jobs/nginx/etc/ssl_trusted.crt.pem;
    ssl_verify_client on;
   ```
 
   Here is the beginning from a sample configuration:
 
   ```yaml
-  ssl_key: |
+  ssl_trusted_cert: |
     -----BEGIN CERTIFICATE-----
     MIIDfDCCAWQCAQEwDQYJKoZIhvcNAQEFBQAwRTELMAkGA1UEBhMCQVUxEzARBgNV
     BAgTClNvbWUtU3RhdGUxITAfBgNVBAoTGEludGVybmV0IFdpZGdpdHMgUHR5IEx0
+    ...
+    -----END CERTIFICATE-----    
+  
   ```
 
 ### Caveats
