@@ -1,3 +1,7 @@
+Customized relase of the nginx
+* use the latest version of the nginx nginx-1.12.0
+* added client authentication support
+
 # BOSH-deployed nginx Server
 
 This BOSH release deploys nginx server.
@@ -106,6 +110,44 @@ Browse to your VM's elastic IP to ensure that the page loads as expected.
   ssl_chained_cert: |
     -----BEGIN CERTIFICATE-----
     MIIGSjCCBTKgAwIBAgIRAOxg+vyhygau6bc2SAooL6owDQYJKoZIhvcNAQELBQAw
+  ```
+
+* `ssl_client_cert`: *Optional*, defaults to ''. This contains the contents of the
+  SSL certificate in PEM-encoded format for the allowed client.
+  This is required if deploying an HTTPS webserver with client verification.
+  The certificate is deployed to the path `/var/vcap/jobs/nginx/etc/ssl_client.crt.pem` and
+  requires the following line in the `nginx_conf`'s *server* definition:
+
+  ```
+   ssl_client_certificate /var/vcap/jobs/nginx/etc/ssl_client.crt.pem;
+   ssl_verify_client on;
+  ```
+
+  Here is the beginning from a sample configuration:
+
+  ```yaml
+  ssl_key: |
+    -----BEGIN CERTIFICATE-----
+    MIIDfDCCAWQCAQEwDQYJKoZIhvcNAQEFBQAwRTELMAkGA1UEBhMCQVUxEzARBgNV
+  ```
+* `ssl_trusted_cert`: *Optional*, defaults to ''. This contains the contents of the
+  SSL certificate in PEM-encoded format for the [certification authority](https://en.wikipedia.org/wiki/Certificate_authority) .
+  This is required if deploying an HTTPS webserver with client verification.
+  The certificate is deployed to the path `/var/vcap/jobs/nginx/etc/ssl_client.crt.pem` and
+  requires the following line in the `nginx_conf`'s *server* definition:
+
+  ```
+   ssl_client_certificate /var/vcap/jobs/nginx/etc/ssl_trusted.crt.pem;
+   ssl_verify_client on;
+  ```
+
+  Here is the beginning from a sample configuration:
+
+  ```yaml
+  ssl_key: |
+    -----BEGIN CERTIFICATE-----
+    MIIDfDCCAWQCAQEwDQYJKoZIhvcNAQEFBQAwRTELMAkGA1UEBhMCQVUxEzARBgNV
+    BAgTClNvbWUtU3RhdGUxITAfBgNVBAoTGEludGVybmV0IFdpZGdpdHMgUHR5IEx0
   ```
 
 ### Caveats

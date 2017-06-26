@@ -1,6 +1,13 @@
+#---
+#blobstore:
+#  provider: s3
+#  options:
+#    bucket_name: nginx-release
+#final_name: nginx
 ---
+final_name: hybris-nginx
 blobstore:
   provider: s3
   options:
-    bucket_name: nginx-release
-final_name: nginx
+    bucket_name: blobs-yaas-orks
+    folder: nginx-boshrelease

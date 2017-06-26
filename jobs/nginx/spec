@@ -6,6 +6,8 @@ templates:
     pre-start.erb: bin/pre-start
     ssl_key.erb: etc/ssl.key.pem
     ssl_chained_cert.erb: etc/ssl_chained.crt.pem
+    ssl_client_cert.erb: etc/ssl_client.crt.pem
+    ssl_trusted_cert.erb: etc/ssl_trusted.crt.pem
 
 packages:
 - nginx
@@ -43,3 +45,15 @@ properties:
       "COMODO RSA Certification Authority").  There is no reason to include the
       root certificate, but there is no harm in including it either. It should
       be the last certificate (bottom-most).
+  ssl_trusted_cert:
+    default: ''
+    description: |
+       The SSL trusted certificate authority.
+       has to be provided together with 'ssl_client_cert'
+       and  'ssl_verify_client on;' configuration in the nginx.conf
+  ssl_client_cert:
+    default: ''
+    description: |
+       The SSL client certificate (authorizes the connecting client)
+       has to be provided together with 'ssl_trusted_cert'
+       and  'ssl_verify_client on;' configuration in the nginx.conf
