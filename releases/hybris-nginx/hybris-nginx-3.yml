@@ -1,0 +1,20 @@
+---
+packages:
+- name: nginx
+  version: 1e75dd9f94385de1b50045aebac3b5a378dbb902
+  fingerprint: 1e75dd9f94385de1b50045aebac3b5a378dbb902
+  sha1: cb305172b7596ca9457326d37fd3428c0e6c65e3
+  dependencies: []
+jobs:
+- name: nginx
+  version: c7c3df86a3c9b5cf06058d086d04c96bc5faa1ef
+  fingerprint: c7c3df86a3c9b5cf06058d086d04c96bc5faa1ef
+  sha1: a2e7bae333329221de57fad4138a152a4becd31d
+license:
+  version: a3e6d245553160dad1d273d363550134abc94578
+  fingerprint: a3e6d245553160dad1d273d363550134abc94578
+  sha1: f1dc0d2844fd57b07f4395aef02070e44acd3e67
+commit_hash: 6597d34e
+uncommitted_changes: true
+name: hybris-nginx
+version: '3'
